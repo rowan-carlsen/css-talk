@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maslow's Hierarchy - Hotspot</title>
+    <style>
+        :root {
+            --primary: #009BDB;
+            --secondary: black;
+            --tertiary: #F6B344;
+            --quaternary: #D02286;
+            --quinary: #75AE4E;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'Lato Extended';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://du11hjcvx0uqb.cloudfront.net/br/dist/fonts/lato/extended/Lato-Regular-bd03a2cc27.woff2) format("woff2");
+            font-display: auto;
+        }
+
+        @font-face {
+            font-family: 'Lato Extended';
+            font-style: normal;
+            font-weight: 700;
+            src: url(https://du11hjcvx0uqb.cloudfront.net/br/dist/fonts/lato/extended/Lato-Bold-cccb897485.woff2) format("woff2");
+            font-display: auto;
+        }
+
+        body {
+            font-family: "Lato Extended", Lato, sans-serif;
+            position: relative;
+        }
+
+        .hotspot {
+            pointer-events: all;
+            transition: transform .2s;
+            cursor: pointer;
+        }
+
+        .modal {
+            visibility: hidden;
+            width: 35em;
+            max-width: 60%;
+            min-width: 250px;
+            border: 2px solid var(--secondary);
+            border-radius: 1em;
+            padding: .5em;
+            background: white;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            transform: scale(.5);
+            overflow: auto;
+            max-height: 100%;
+        }
+
+        .modal p {
+            margin: 0;
+        }
+
+        .modal p:last-of-type {
+            margin: 1em 0 0 .5em;
+        }
+
+        .shown {
+            visibility: visible;
+            transition: transform .2s cubic-bezier(.3, 1.5, 1, 1);
+            transform: none;
+        }
+
+        #container {
+            width: 540px;
+            margin: 0 auto;
+            display: flex;
+            flex-flow: column;
+        }
+
+        .level {
+            width: 100%;
+            height: 100px;
+            margin: 0 auto;
+            position: relative;
+            perspective: 10000px;
+            transform-style: preserve-3d;
+            transform-origin: center 50% -250px;
+            transition: transform .5s;
+            transform: rotateY(-20deg) translateZ(var(--zDist));
+        }
+
+        .front {
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(0 100%, 50px 0, calc(100% - 50px) 0, 100% 100%);
+            background-color: var(--bgColor);
+            transform-origin: bottom;
+            transform: rotateX(30deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .side {
+            background-color: var(--bgColor);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 100%;
+            bottom: 0;
+            clip-path: polygon(0 100%, 50px 0, calc(100% - 50px) 0, 100% 100%);
+            transform-origin: left bottom;
+            transform: rotateY(90deg) rotateX(30deg);
+            filter: brightness(1.5);
+        }
+
+        .hotspot:is(:hover, :focus-visible),
+        .touched {
+            transform: scale(1.2) rotateY(-0deg) translateZ(var(--zDist))
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="level hotspot" tabindex="0" data-modal="level-5"
+            style="--bgColor: #538cff; width: calc(100% - 440px); --zDist: -200px;">
+            <div class="front"
+                style="flex-flow: column; justify-content: flex-end; padding-bottom: 5px; font-size: .8rem;">
+                <span>Self-</span><span>Actualization</span>
+            </div>
+            <div class="side"></div>
+        </div>
+        <div class="level hotspot" tabindex="0" data-modal="level-4"
+            style="--bgColor: #72cc36; width: calc(100% - 330px); --zDist: -150px;">
+            <div class="front">Esteem</div>
+            <div class="side"></div>
+        </div>
+        <div class="level hotspot" tabindex="0" data-modal="level-3"
+            style="--bgColor: #ffa252; width: calc(100% - 220px); --zDist: -100px;">
+            <div class="front">Love and Belonging</div>
+            <div class="side"></div>
+        </div>
+        <div class="level hotspot" tabindex="0" data-modal="level-2"
+            style="--bgColor: #ff642c; width: calc(100% - 110px); --zDist: -50px;">
+            <div class="front">Safety</div>
+            <div class=" side"></div>
+        </div>
+        <div class="level hotspot" tabindex="0" data-modal="level-1" style="--bgColor: #eb3b3b; --zDist: 0px;">
+            <div class="front">Physiological Needs</div>
+            <div class="side"></div>
+        </div>
+
+    </div>
+
+    <div class="modal" id="level-1">
+        <p>These are the most basic needs of survival&mdash;food, water, air, and sleep. Deprived of them, humans can
+            focus on little else.</p>
+
+        <p><strong>Example:</strong> Quickly bringing water and bread can help diners enjoy a restaurant experience more
+            fully. Hotels should provide the best sleep environment possible&mdash;cozy, quiet rooms with easy temperature
+            controls, pillow and blanket options, and water bottles. Offering something else unique, like a fruit bowl, might set the hotel apart.</p>
+    </div>
+    <div class="modal" id="level-2">
+        <p>These are the needs relating to security, predictability, health, and a sense of control. As with food and
+            water, people deprived of these needs place all their attention on obtaining them.</p>
+        <p><strong>Example:</strong> Cleanliness is one of the most fundamental ways in which hospitality businesses
+            must fulfill human safety needs.
+        </p>
+    </div>
+    <div class="modal" id="level-3">
+        <p>People need to feel that they’re part of a group, to feel affection, and to have strong interpersonal
+            relationships.</p>
+        <p><strong>Example:</strong> Making eye contact with guests fosters a sense of connection which can be enhanced
+            with light conversation. Regulars seek out the same places over and over again because of a sense of
+            belonging.</p>
+    </div>
+    <div class="modal" id="level-4">
+        <p>People seek respect, both from themselves and from others.</p>
+        <p><strong>Example:</strong> Making a guest feel as if their business is important and appreciated enhances
+            their esteem.</p>
+    </div>
+    <div class="modal" id="level-5">
+        <p>The highest tier, which can be achieved only once the others are filled, is self-fulfillment, personal
+            growth, and the realization of potential.</p>
+        <p><strong>Example:</strong> Only a guest can achieve this for themself, but businesses which go above and beyond in
+            customizing service to fulfill the other needs can facilitate guests attaining it.</p>
+    </div>
+
+    <script>
+        const hotspots = document.querySelectorAll('.hotspot');
+        hotspots.forEach(spot => {
+            spot.addEventListener('touchstart', e => {
+                document.querySelectorAll('.touched').forEach(x => x.classList.remove('touched'));
+                e.currentTarget.classList.add('touched');
+            });
+            spot.addEventListener('click', openModal);
+            spot.addEventListener('keydown', openModalKB);
+        });
+        window.addEventListener('click', clearAll);
+        function clearAll() {
+            document.querySelectorAll('.touched').forEach(x => x.classList.remove('touched'));
+            document.querySelectorAll('.shown').forEach(x => x.classList.remove('shown'));
+        }
+        function openModalKB(ev) {
+            if (ev.key == ' ' || ev.key == 'Enter') {
+                ev.preventDefault();
+                const rect = ev.currentTarget.getBoundingClientRect();
+                ev.pageX = window.scrollX + rect.x + rect.width;
+                ev.pageY = window.scrollY + rect.y + rect.height;
+                openModal(ev);
+            }
+        }
+        function openModal(ev) {
+            ev.stopPropagation();
+            let targ = ev.currentTarget;
+            clearAll();
+            targ.classList.add('touched');
+            const currModal = document.getElementById(targ.dataset.modal);
+            const maxRight = currModal.parentNode.offsetWidth - currModal.offsetWidth;
+            const maxDown = currModal.parentNode.offsetHeight - currModal.offsetHeight;
+            currModal.style.left = `${Math.min(maxRight, ev.pageX + 20)}px`;
+            currModal.style.top = `${Math.min(maxDown, ev.pageY + 20)}px`;
+            currModal.classList.add('shown');
+        }
+    </script>
+</body>
+</html>
