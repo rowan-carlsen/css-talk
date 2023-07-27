@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pointer Events</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: max-content;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        button {
+            width: 400px;
+            background: lightblue;
+            padding: .5em;
+            cursor: pointer;
+            font-size: 1.4em;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        output {
+            grid-column: span 2;
+            color: darkred;
+            font-size: 1.4rem;
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        svg {
+            width: 400px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button type="button" id="button-1">
+            <img src="images/cats-1.jpg" alt="" />
+            <span>Some very important button text</span>
+        </button>
+        <button type="button" id="button-2">
+            <img src="images/cats-2.jpg" alt="" />
+            <span>Some very important button text</span>
+        </button>
+        <output>&nbsp;</output>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+        <defs>
+            <style>
+                circle {
+                    transition: transform .5s;
+                    transform-box: fill-box;
+                    transform-origin: center;
+                }
+
+                circle:is(:hover, :focus-visible) {
+                    transform: scale(1.1);
+                }
+            </style>
+        </defs>
+        <circle r="200" cx="250" cy="250" fill="#22dd77"></circle>
+        <text font-size="36" font-family="sans-serif" x="250" y="260" text-anchor="middle">
+            This text is
+            <tspan x="250" dy="40">also important</tspan>
+        </text>
+    </svg>
+    <script>
+        const btns = document.querySelectorAll('button'),
+            output = document.querySelector('output');
+        btns.forEach(btn => btn.addEventListener('click', showMessage));
+
+        function showMessage(e) {
+            output.innerText = `You clicked on: ${e.target.tagName}`;
+        }
+    </script>
+</body>
+</html>
